@@ -1,0 +1,28 @@
+# Environment & Secrets
+.env
+*.env
+*.key
+
+# Python & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Ephemeral Captures & Video Assets
+captures/
+video_snapshots/
+*.mp4
+*.mkv
+*.avi
+
+# Test & Debug Outputs
+output.html
+output_test.html
+*.log
+
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
