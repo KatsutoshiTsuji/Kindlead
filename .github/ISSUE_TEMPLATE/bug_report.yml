@@ -1,0 +1,28 @@
+name: 不具合報告 (Bug Report)
+description: 動作しなかった書籍やエラーの報告
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: 不具合の概要
+      description: どのような問題が発生したかを具体的に教えてください。
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: ご利用環境
+      description: NVDAのバージョン、Windowsのバージョン、Kindle for PCのバージョンなど
+      placeholder: |
+        - NVDAバージョン: 2026.1 (例)
+        - Windowsバージョン: Windows 11
+        - 書籍の種類: 固定レイアウト本 / 小説 / 技術書
+    validations:
+      required: false
+  - type: textarea
+    id: steps
+    attributes:
+      label: 再現手順
+      description: どのような操作を行った時に問題が発生したかを記載してください。

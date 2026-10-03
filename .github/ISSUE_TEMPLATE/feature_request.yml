@@ -1,0 +1,17 @@
+name: 機能改善・機能要望 (Feature Request)
+description: 新しい機能や改善のアイデア
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: feature_desc
+    attributes:
+      label: 提案内容
+      description: どのような機能や改善を希望されるかを教えてください。
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: 提案の背景・目的
+      description: この機能があるとどのような課題が解決されるかを教えてください。
