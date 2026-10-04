@@ -23,6 +23,13 @@ try:
 except ImportError:
     from gui import SettingsPanel, NVDASettingsDialog
 
+try:
+    import addonHandler
+    addonHandler.initTranslation()
+except Exception:
+    import gettext
+    gettext.install("kindlead")
+
 import config
 import speech
 import ui
@@ -122,15 +129,15 @@ class KindleadSettingsPanel(SettingsPanel):
             cur_key = load_fallback_api_key()
             
         self.apiKeyEdit = sHelper.addLabeledControl(
-            "Gemini APIキー (&K):",
+            _("Gemini API Key (&K):"),
             wx.TextCtrl,
             value=cur_key
         )
 
         # APIキー支援ボタン
         apiBtnSizer = wx.BoxSizer(wx.HORIZONTAL)
-        self.getApiKeyBtn = wx.Button(self, label="Gemini APIキー取得ページを開く (ブラウザ) (&G)")
-        self.pasteApiKeyBtn = wx.Button(self, label="クリップボードから貼り付け (&V)")
+        self.getApiKeyBtn = wx.Button(self, label=_("Open Gemini API Key page in browser (&G)"))
+        self.pasteApiKeyBtn = wx.Button(self, label=_("Paste from clipboard (&V)"))
         apiBtnSizer.Add(self.getApiKeyBtn, 0, wx.RIGHT, 10)
         apiBtnSizer.Add(self.pasteApiKeyBtn, 0)
         sHelper.addItem(apiBtnSizer)
@@ -144,31 +151,31 @@ class KindleadSettingsPanel(SettingsPanel):
             cur_output_dir = get_default_output_dir()
 
         self.outputDirEdit = sHelper.addLabeledControl(
-            "保存先フォルダー (&O):",
+            _("Output folder (&O):"),
             wx.TextCtrl,
             value=cur_output_dir
         )
-        self.browseOutputDirBtn = wx.Button(self, label="保存先フォルダーの参照 (&B)...")
+        self.browseOutputDirBtn = wx.Button(self, label=_("Browse output folder (&B)..."))
         self.browseOutputDirBtn.Bind(wx.EVT_BUTTON, self.onBrowseOutputDir)
         sHelper.addItem(self.browseOutputDirBtn)
 
         # 3. ページめくり待機時間
         self.pageWaitEdit = sHelper.addLabeledControl(
-            "ページ送り待機秒数 (&W):",
+            _("Page turn wait (seconds) (&W):"),
             wx.TextCtrl,
             value=str(config.conf["kindlead"]["pageWait"])
         )
         
         # 4. 最大ページ数
         self.maxPagesEdit = sHelper.addLabeledControl(
-            "最大取り込み上限ページ数 (&M):",
+            _("Maximum pages to capture (&M):"),
             wx.TextCtrl,
             value=str(config.conf["kindlead"]["maxPages"])
         )
         
         # 5. Pythonパス指定
         self.pythonPathEdit = sHelper.addLabeledControl(
-            "Python実行パス（通常は空欄で自動検出） (&P):",
+            _("Python executable path (auto-detected if blank) (&P):"),
             wx.TextCtrl,
             value=config.conf["kindlead"]["pythonPath"]
         )
@@ -176,7 +183,7 @@ class KindleadSettingsPanel(SettingsPanel):
     def onGetApiKey(self, event):
         url = "https://aistudio.google.com/app/apikey"
         webbrowser.open(url)
-        ui.message("Google AI StudioのAPIキー取得ページをブラウザで開きました。キーを作成・コピー後、貼り付けボタンを押してください。")
+        ui.message(_("Opened Google AI Studio API key page in browser. Copy your key, then click Paste."))
 
     def onPasteApiKey(self, event):
         text = ""
@@ -189,16 +196,16 @@ class KindleadSettingsPanel(SettingsPanel):
             
         if text:
             self.apiKeyEdit.SetValue(text)
-            ui.message("クリップボードからAPIキーを貼り付けました。")
+            ui.message(_("Pasted API key from clipboard."))
         else:
-            ui.message("クリップボードにテキストが見つかりませんでした。")
+            ui.message(_("No text found in clipboard."))
 
     def onBrowseOutputDir(self, event):
         cur_dir = self.outputDirEdit.GetValue().strip() or get_default_output_dir()
-        with wx.DirDialog(self, "保存先フォルダーを選択してください", defaultPath=cur_dir, style=wx.DD_DEFAULT_STYLE | wx.DD_DIR_MUST_EXIST) as dlg:
+        with wx.DirDialog(self, _("Select output folder"), defaultPath=cur_dir, style=wx.DD_DEFAULT_STYLE | wx.DD_DIR_MUST_EXIST) as dlg:
             if dlg.ShowModal() == wx.ID_OK:
                 self.outputDirEdit.SetValue(dlg.GetPath())
-                ui.message(f"保存先を {dlg.GetPath()} に設定しました。")
+                ui.message(_("Output folder set to {path}").format(path=dlg.GetPath()))
 
     def onSave(self):
         config.conf["kindlead"]["geminiApiKey"] = self.apiKeyEdit.GetValue().strip()
@@ -215,30 +222,33 @@ class KindleadSettingsPanel(SettingsPanel):
 
 class KindleadDialog(wx.Dialog):
     def __init__(self, parent, on_start_callback):
-        super().__init__(parent, title="Kindlead - Kindle書籍の構造化取り込み", style=wx.DEFAULT_DIALOG_STYLE)
+        super().__init__(parent, title=_("Kindlead - Kindle Book Structured Capture"), style=wx.DEFAULT_DIALOG_STYLE)
         self.on_start_callback = on_start_callback
 
         mainSizer = wx.BoxSizer(wx.VERTICAL)
 
-        descText = wx.StaticText(
-            self,
-            label=(
-                "【取り込み前の確認事項】\n"
-                "Kindle for PCで読みたい書籍を開き、【先頭（表紙）】を表示させた状態で開始してください。\n\n"
-                "● 開始後は画面最前面でKindleが自動的にページをめくります。\n"
-                "  完了するまでの数分間は、PCのキーボードやマウスに触れずにお待ちください。\n"
-                "● 進捗はビープ音（ページ撮影時: 440Hz / AI解析完了時: 554Hz）でお知らせします。\n"
-                "● 完了すると上昇和音が鳴り、デスクトップに目次リンク付きHTMLが保存されて自動で開きます。\n"
-                "● 途中で止めたい場合は、再度メニューからKindleadを実行すると安全に中断できます。"
-            )
+        guidance_text = _(
+            "[Important Checklist Before Starting]\n"
+            "Open the target book in Kindle for PC and display the beginning (cover / page 1).\n\n"
+            "● Once started, Kindle will automatically turn pages in full screen.\n"
+            "  Please do not touch the keyboard or mouse for a few minutes until completion.\n"
+            "● Progress is signaled with beeps (Page capture: 440Hz / AI analysis: 554Hz).\n"
+            "● Upon completion, a chime plays, and the structured HTML with TOC links opens in your browser.\n"
+            "● To cancel midway, run Kindlead from the NVDA menu again to safely stop."
         )
+
+        descText = wx.StaticText(self, label=guidance_text)
         mainSizer.Add(descText, 0, wx.ALL, 12)
 
         # 送り方向（デフォルトは自動判別）
         self.directionRadio = wx.RadioBox(
             self,
-            label="書籍の組み方向 (&D)",
-            choices=["自動判別（おすすめ）", "縦書き（右開き）", "横書き（左開き）"],
+            label=_("Reading direction (&D)"),
+            choices=[
+                _("Auto detect (recommended)"),
+                _("Vertical (right-to-left)"),
+                _("Horizontal (left-to-right)")
+            ],
             majorDimension=1
         )
         self.directionRadio.SetSelection(0)
@@ -246,8 +256,8 @@ class KindleadDialog(wx.Dialog):
 
         # ボタン
         btnSizer = wx.BoxSizer(wx.HORIZONTAL)
-        self.startBtn = wx.Button(self, wx.ID_OK, label="取り込み開始 (&S)")
-        self.cancelBtn = wx.Button(self, wx.ID_CANCEL, label="キャンセル (&C)")
+        self.startBtn = wx.Button(self, wx.ID_OK, label=_("Start Capture (&S)"))
+        self.cancelBtn = wx.Button(self, wx.ID_CANCEL, label=_("Cancel (&C)"))
         btnSizer.Add(self.startBtn, 0, wx.RIGHT, 10)
         btnSizer.Add(self.cancelBtn, 0)
         mainSizer.Add(btnSizer, 0, wx.ALIGN_RIGHT | wx.ALL, 12)
@@ -288,8 +298,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         
         self.menuItem = gui.mainFrame.sysTrayIcon.toolsMenu.Append(
             wx.ID_ANY,
-            "Kindlead - Kindle書籍の構造化取り込み(&K)...",
-            "Kindle for PCの書籍を完全アクセシブルなHTMLに自動変換します"
+            _("Kindlead - Structured capture from Kindle book (&K)..."),
+            _("Automatically convert Kindle for PC book into accessible HTML")
         )
         gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, self.onKindleadMenu, self.menuItem)
 
@@ -309,8 +319,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
     def onKindleadMenu(self, event):
         if self._is_running:
             res = gui.messageBox(
-                "現在取り込み処理が実行中です。処理を中止しますか？",
-                "Kindlead - 実行中",
+                _("Capture is currently in progress. Do you want to abort?"),
+                _("Kindlead - Running"),
                 wx.YES_NO | wx.ICON_QUESTION
             )
             if res == wx.YES:
@@ -320,8 +330,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         api_key = config.conf["kindlead"]["geminiApiKey"] or load_fallback_api_key()
         if not api_key:
             gui.messageBox(
-                "Gemini APIキーが設定されていません。\nNVDAメニュー → 設定 → 設定 → Kindlead からAPIキーを設定してください。",
-                "Kindlead - APIキー未設定",
+                _("Gemini API key is not configured.\nPlease go to NVDA Menu -> Preferences -> Settings -> Kindlead to enter your API key."),
+                _("Kindlead - API Key Required"),
                 wx.OK | wx.ICON_WARNING
             )
             return
@@ -338,13 +348,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         self._is_running = False
         self._current_process = None
         play_chord((440, 100), (330, 150))
-        notify_ui("Kindlead: 取り込みを中止しました。")
+        notify_ui(_("Kindlead: Capture aborted."))
 
     def startExtraction(self, direction):
         if self._is_running:
             return
         self._is_running = True
-        ui.message("Kindlead: 取り込みを開始します。Kindleを最前面化しています...")
+        ui.message(_("Kindlead: Starting capture. Bringing Kindle to front..."))
         worker = threading.Thread(target=self._run_extraction_thread, args=(direction,), daemon=True)
         worker.start()
 
@@ -363,7 +373,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
             if not engine_path.exists():
                 self._is_running = False
-                notify_ui("Kindlead: engine.py が見つかりませんでした。")
+                notify_ui(_("Kindlead: engine.py not found."))
                 return
 
             cmd = [
@@ -433,19 +443,22 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
             if ret_code == 0:
                 play_chord((440, 100), (659, 100), (880, 220))
                 if res_json and res_json.get("success"):
-                    title = res_json.get("title", "電子書籍")
+                    title = res_json.get("title", "Book")
                     pages = res_json.get("pages", 0)
                     total_time = res_json.get("total_time", 0)
-                    notify_ui(f"Kindlead: 『{title}』 全 {pages} ページの構造化取り込みが完了しました！（所要時間: {total_time}秒）")
+                    msg = _("Kindlead: Successfully captured '{title}' ({pages} pages) in {total_time}s!").format(
+                        title=title, pages=pages, total_time=total_time
+                    )
+                    notify_ui(msg)
                 else:
-                    notify_ui("Kindlead: 取り込みが完了しました。デスクトップのHTMLを開きます。")
+                    notify_ui(_("Kindlead: Capture completed. Opening HTML on Desktop."))
             else:
-                err_msg = (stderr_out or "不明なエラー").strip()
+                err_msg = (stderr_out or "Unknown error").strip()
                 log.error(f"[Kindlead] エンジンエラー: {err_msg}")
-                notify_ui(f"Kindlead: 取り込み中にエラーが発生しました。\n{err_msg[:120]}")
+                notify_ui(_("Kindlead: An error occurred during capture.\n{err_msg}").format(err_msg=err_msg[:120]))
 
         except Exception as e:
             self._is_running = False
             self._current_process = None
             log.error(f"[Kindlead] 予期せぬ例外: {e}")
-            notify_ui(f"Kindlead: エラーが発生しました: {e}")
+            notify_ui(_("Kindlead: Unexpected error: {e}").format(e=e))

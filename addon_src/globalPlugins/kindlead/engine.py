@@ -440,7 +440,7 @@ def compile_accessible_html(results, image_count, t_cap, t_api, output_dir=None)
         li {{ margin-bottom: 0.4em; }}
         a {{ color: var(--link-color); text-decoration: underline; }}
         a:focus, a:hover {{ background-color: #e8f0fe; outline: 2px solid var(--link-color); }}
-        nav[aria-label="目次"] {{
+        nav[aria-label="目次"], nav[aria-label="Table of Contents"] {{
             background: var(--accent-bg);
             border-left: 4px solid var(--heading-color);
             padding: 16px 20px;
