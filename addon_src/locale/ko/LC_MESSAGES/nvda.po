@@ -1,0 +1,151 @@
+# Korean translations for Kindlead NVDA add-on.
+# Copyright (C) 2026 Katsutoshi Tsuji (Debugon) & Antigravity
+# This file is distributed under the same license as the Kindlead package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Kindlead 1.2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/KatsutoshiTsuji/Kindlead/issues\n"
+"POT-Creation-Date: 2026-10-11 13:00+0900\n"
+"PO-Revision-Date: 2026-10-11 13:00+0900\n"
+"Last-Translator: Katsutoshi Tsuji (Debugon) & Antigravity\n"
+"Language-Team: Korean <ko>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Add-on summary, usually the user-visible name of the add-on.
+msgid "Kindlead - Accessible Kindle Reader"
+msgstr "Kindlead - 접근 가능한 Kindle 전자책 리더"
+
+#. Add-on description
+msgid "Automatically converts Kindle for PC books into fully accessible HTML documents with heading hierarchy and table of contents using Google Gemini AI."
+msgstr "Google Gemini 시각 AI를 활용하여 Kindle for PC의 전자책을 제목 계층 및 목차 링크가 포함된 완벽한 접근성 HTML 문서로 자동 변환합니다."
+
+msgid "Kindlead"
+msgstr "Kindlead"
+
+msgid "Gemini API Key (&K):"
+msgstr "Gemini API 키 (&K):"
+
+msgid "Open Gemini API Key page in browser (&G)"
+msgstr "브라우저에서 Gemini API 키 발급 페이지 열기 (&G)"
+
+msgid "Paste from clipboard (&V)"
+msgstr "클립보드에서 붙여넣기 (&V)"
+
+msgid "Output folder (&O):"
+msgstr "저장 폴더 (&O):"
+
+msgid "Browse output folder (&B)..."
+msgstr "저장 폴더 찾아보기 (&B)..."
+
+msgid "Page turn wait (seconds) (&W):"
+msgstr "페이지 넘김 대기 시간(초) (&W):"
+
+msgid "Maximum pages to capture (&M):"
+msgstr "최대 캡처 페이지 수 (&M):"
+
+msgid "Python executable path (auto-detected if blank) (&P):"
+msgstr "Python 실행 경로(비워두면 자동 감지) (&P):"
+
+msgid "Opened Google AI Studio API key page in browser. Copy your key, then click Paste."
+msgstr "브라우저에서 Google AI Studio API 키 페이지를 열었습니다. 키를 복사한 후 붙여넣기 버튼을 누르세요."
+
+msgid "Pasted API key from clipboard."
+msgstr "클립보드에서 API 키를 붙여넣었습니다."
+
+msgid "No text found in clipboard."
+msgstr "클립보드에서 텍스트를 찾을 수 없습니다."
+
+msgid "Select output folder"
+msgstr "저장할 폴더를 선택하세요"
+
+msgid "Output folder set to {path}"
+msgstr "저장 폴더가 {path}(으)로 설정되었습니다"
+
+msgid "Kindlead - Kindle Book Structured Capture"
+msgstr "Kindlead - Kindle 전자책 구조화 캡처"
+
+msgid ""
+"[Important Checklist Before Starting]\n"
+"Open the target book in Kindle for PC and display the beginning (cover / page 1).\n\n"
+"● Once started, Kindle will automatically turn pages in full screen.\n"
+"  Please do not touch the keyboard or mouse for a few minutes until completion.\n"
+"● Progress is signaled with beeps (Page capture: 440Hz / AI analysis: 554Hz).\n"
+"● Upon completion, a chime plays, and the structured HTML with TOC links opens in your browser.\n"
+"● To cancel midway, run Kindlead from the NVDA menu again to safely stop."
+msgstr ""
+"【시작 전 확인 사항】\n"
+"Kindle for PC에서 읽고자 하는 전자책을 열고 【표지(첫 페이지)】를 표시한 상태에서 시작하세요.\n\n"
+"● 시작되면 Kindle이 전체 화면에서 자동으로 페이지를 넘기며 캡처합니다.\n"
+"  완료될 때까지 몇 분 동안 키보드나 마우스를 건드리지 마세요.\n"
+"● 진행 상태는 비프음으로 안내됩니다(페이지 촬영: 440Hz / AI 분석 완료: 554Hz).\n"
+"● 완료되면 완료음이 울리고, 목차 링크가 포함된 HTML 전자책이 브라우저에서 자동으로 열립니다.\n"
+"● 중간에 취소하려면 NVDA 메뉴에서 Kindlead를 다시 실행하여 안전하게 중지할 수 있습니다."
+
+msgid "Reading direction (&D)"
+msgstr "페이지 넘김 방향 (&D)"
+
+msgid "Auto detect (recommended)"
+msgstr "자동 감지(권장)"
+
+msgid "Vertical (right-to-left)"
+msgstr "세로쓰기 우철(오른쪽에서 왼쪽)"
+
+msgid "Horizontal (left-to-right)"
+msgstr "가로쓰기 좌철(왼쪽에서 오른쪽)"
+
+msgid "Start Capture (&S)"
+msgstr "캡처 시작 (&S)"
+
+msgid "Cancel (&C)"
+msgstr "취소 (&C)"
+
+msgid "Kindlead - Structured capture from Kindle book (&K)..."
+msgstr "Kindlead - Kindle 전자책 구조화 캡처 (&K)..."
+
+msgid "Automatically convert Kindle for PC book into accessible HTML"
+msgstr "Kindle for PC 전자책을 접근 가능한 HTML로 자동 변환합니다"
+
+msgid "Capture is currently in progress. Do you want to abort?"
+msgstr "현재 캡처 작업이 진행 중입니다. 작업을 중단하시겠습니까?"
+
+msgid "Kindlead - Running"
+msgstr "Kindlead - 실행 중"
+
+msgid ""
+"Gemini API key is not configured.\n"
+"Please go to NVDA Menu -> Preferences -> Settings -> Kindlead to enter your API key."
+msgstr ""
+"Gemini API 키가 설정되지 않았습니다.\n"
+"NVDA 메뉴 -> 기본 설정 -> 설정 -> Kindlead에서 API 키를 입력하세요."
+
+msgid "Kindlead - API Key Required"
+msgstr "Kindlead - API 키 필요"
+
+msgid "Kindlead: Capture aborted."
+msgstr "Kindlead: 캡처가 중단되었습니다."
+
+msgid "Kindlead: Starting capture. Bringing Kindle to front..."
+msgstr "Kindlead: 캡처를 시작합니다. Kindle을 맨 앞으로 가져오는 중..."
+
+msgid "Kindlead: engine.py not found."
+msgstr "Kindlead: engine.py 파일을 찾을 수 없습니다."
+
+msgid "Kindlead: Successfully captured '{title}' ({pages} pages) in {total_time}s!"
+msgstr "Kindlead: '{title}' 총 {pages}페이지 구조화 캡처 완료! (소요 시간: {total_time}초)"
+
+msgid "Kindlead: Capture completed. Opening HTML on Desktop."
+msgstr "Kindlead: 캡처가 완료되었습니다. 바탕화면의 HTML 문서를 엽니다."
+
+msgid ""
+"Kindlead: An error occurred during capture.\n"
+"{err_msg}"
+msgstr ""
+"Kindlead: 캡처 중 오류가 발생했습니다.\n"
+"{err_msg}"
+
+msgid "Kindlead: Unexpected error: {e}"
+msgstr "Kindlead: 예기치 않은 오류가 발생했습니다: {e}"

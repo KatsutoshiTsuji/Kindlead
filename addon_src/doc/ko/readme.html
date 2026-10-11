@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Kindlead - 접근 가능한 Kindle 전자책 리더</title>
+</head>
+<body>
+    <h1>Kindlead - 접근 가능한 Kindle 전자책 리더 (NVDA 추가 기능)</h1>
+    <p>제작자: 츠지 카츠토시 (辻 勝利 / Debugon) & Antigravity</p>
+    <h2>개요</h2>
+    <p>Kindlead는 시각장애인을 위한 NVDA 화면 낭독 프로그램용 추가 기능입니다. Google Gemini 멀티모달 시각 AI를 활용하여 Kindle for PC에서 열려 있는 전자책(특히 고정 레이아웃 또는 이미지 도서)을 자동으로 페이지 넘김 및 캡처하여, 제목 계층 구조와 클릭 가능한 목차 링크가 포함된 완벽한 접근성 HTML 문서로 자동 변환합니다.</p>
+    <h2>사용 방법</h2>
+    <ol>
+        <li><a href="https://aistudio.google.com/">Google AI Studio</a>에서 Gemini API 키를 무료로 발급받습니다.</li>
+        <li>NVDA 메뉴 (<code>NVDA + N</code>) &rarr; 기본 설정 &rarr; 설정 &rarr; <strong>Kindlead</strong> 범주를 열고 API 키를 입력합니다.</li>
+        <li>Kindle for PC를 실행하고 읽고자 하는 전자책의 시작 부분(표지 또는 1페이지)을 표시합니다.</li>
+        <li>NVDA 메뉴 &rarr; 도구 &rarr; <strong>Kindlead - Kindle 전자책 구조화 캡처 (&K)...</strong>를 실행합니다.</li>
+        <li>안내 대화상자를 확인하고 "캡처 시작"을 선택합니다. Kindle이 자동으로 페이지를 넘기는 동안 키보드나 마우스를 건드리지 마세요.</li>
+        <li>캡처 및 AI 처리가 완료되면 알림음이 울리고, 기본 웹 브라우저에서 구조화된 HTML 전자책이 자동으로 열립니다.</li>
+    </ol>
+    <h2>독서 시 키보드 단축키 (NVDA 단일 문자 탐색)</h2>
+    <ul>
+        <li><strong>H 키</strong>: 다음 제목으로 이동 (Shift+H: 이전 제목)</li>
+        <li><strong>1〜6 키</strong>: 제목 레벨 1〜6으로 이동 (장/절 탐색)</li>
+        <li><strong>7 키</strong>: 칼럼・박스 기사로 이동 (Shift+7: 이전 항목)</li>
+        <li><strong>8 키</strong>: 주석・각주 순회 (Shift+8: 이전 항목; 끝부분의 "&hookleftarrow;" 링크를 누르면 본문 참조 위치로 즉시 복귀)</li>
+        <li><strong>9 키</strong>: 도표 및 그림 설명으로 이동 (Shift+9: 이전 항목)</li>
+    </ul>
+</body>
+</html>

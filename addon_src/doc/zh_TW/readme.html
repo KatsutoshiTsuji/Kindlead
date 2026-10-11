@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>Kindlead - Kindle 無障礙電子書閱讀器</title>
+</head>
+<body>
+    <h1>Kindlead - Kindle 無障礙電子書閱讀器 (NVDA 附加元件)</h1>
+    <p>作者: 辻 勝利 (Debugon) & Antigravity</p>
+    <h2>概要</h2>
+    <p>Kindlead 是一款專為 NVDA 螢幕報讀軟體設計的附加元件。透過 Google Gemini 多模態視覺 AI，自動翻頁擷取 Kindle for PC 中開啟的電子書（特別是固定版面、純圖片書籍），將其轉換為包含標題階層樹、可點擊目錄連結的完全無障礙 HTML 文件。</p>
+    <h2>使用方法</h2>
+    <ol>
+        <li>在 <a href="https://aistudio.google.com/">Google AI Studio</a> 免費取得 Gemini API 金鑰。</li>
+        <li>開啟 NVDA 功能表 (<code>NVDA + N</code>) &rarr; 偏好設定 &rarr; 設定 &rarr; <strong>Kindlead</strong> 類別，貼上您的 API 金鑰。</li>
+        <li>開啟 Kindle for PC 並將欲閱讀的書籍翻至開頭（封面或第 1 頁）。</li>
+        <li>開啟 NVDA 功能表 &rarr; 工具 &rarr; <strong>Kindlead - Kindle 電子書結構化擷取 (&K)...</strong>。</li>
+        <li>確認提示對話方塊並點選「開始擷取」。在 Kindle 自動翻頁期間，請勿觸碰鍵盤與滑鼠。</li>
+        <li>擷取與 AI 處理完成後會播放提示和弦音，並在預設瀏覽器中自動開啟結構化 HTML 電子書。</li>
+    </ol>
+    <h2>閱讀時的鍵盤操作（NVDA 單鍵導覽）</h2>
+    <ul>
+        <li><strong>H 鍵</strong>: 跳至下一個標題（Shift+H 跳至上一個）</li>
+        <li><strong>1〜6 鍵</strong>: 跳至標題層級 1〜6（章節與小節跳轉）</li>
+        <li><strong>7 鍵</strong>: 跳至專欄・專題報導（Shift+7 跳至上一個）</li>
+        <li><strong>8 鍵</strong>: 巡迴瀏覽註釋・腳註（Shift+8 跳至上一個；點擊結尾的「&hookleftarrow;」連結即可瞬間返回正文閱讀位置）</li>
+        <li><strong>9 鍵</strong>: 跳至圖表說明與圖說文字（Shift+9 跳至上一個）</li>
+    </ul>
+</body>
+</html>

@@ -17,22 +17,23 @@
 
 ---
 
-## Issue #2: CJK多言語対応（中国語簡体字 zh_CN、繁体字 zh_TW、韓国語 ko）の追加
+## Issue #2: CJK多言語対応（中国語簡体字 zh_CN、繁体字 zh_TW、韓国語 ko）の追加 (v1.2.0 実装完了 ✅)
 * **GitHub Issue**: https://github.com/KatsutoshiTsuji/Kindlead/issues/2
-* **概要**: CJK（日中韓・台湾）文化圏のスクリーンリーダーユーザーに向けて、Kindleadの多言語対応を拡充する。
+* **ステータス**: 実装完了 (v1.2.0)
+* **概要**: CJK（日中韓・台湾）文化圏のスクリーンリーダーユーザーに向けて、Kindleadの多言語対応を拡充。
 * **背景**:
   * Kindleの固定レイアウト本や画像化された書籍のアクセシビリティ課題はアジア圏全域で共通。
   * 特に台湾（繁体字）は日本と同様に縦書き・右開きの書籍文化を持ち、NVDAコミュニティ（淡江大学等）の活動も非常に活発。
-  * NVDAのgettext多言語化アーキテクチャを活用し、UI・メニュー・メッセージを完全ローカライズする。
+  * NVDAのgettext多言語化アーキテクチャを活用し、UI・メニュー・メッセージを完全ローカライズ。
 * **対象言語**:
   * `zh_TW` (Chinese Traditional / 繁體中文)
   * `zh_CN` (Chinese Simplified / 简体中文)
   * `ko` (Korean / 한국어)
-* **実装タスク**:
-  1. 各言語の翻訳カタログ（`addon_src/locale/{zh_TW,zh_CN,ko}/LC_MESSAGES/nvda.po`）の作成
+* **対応内容**:
+  1. 各言語の翻訳カタログ（`addon_src/locale/{zh_TW,zh_CN,ko}/LC_MESSAGES/nvda.po`）の作成（全38エントリ）
   2. `build_addon.py` による自動 `.mo` バイナリコンパイル
   3. 各言語用ヘルプドキュメント（`doc/{zh_TW,zh_CN,ko}/readme.html`）の作成
-  4. リポジトリ `README.md` の多言語リンク更新
+  4. リポジトリ `README.md` の多言語リンク・概要セクション更新
 
 ---
-最終更新日: 2026-10-05 (辻 勝利 & Antigravity)
+最終更新日: 2026-10-11 (辻 勝利 & Antigravity)
