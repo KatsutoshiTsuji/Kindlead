@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>素晴らしいアクセシビリティの世界</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --heading-color: #0b3c5d;
+            --border-color: #e0e0e0;
+            --accent-bg: #f4f6f8;
+            --link-color: #0056b3;
+            --column-border: #2e86de;
+            --footnote-border: #8395a7;
+            --figure-color: #c0392b;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+            line-height: 1.85;
+            max-width: 840px;
+            margin: 30px auto;
+            padding: 0 24px;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+        h1, h2, h3, h4 {
+            color: var(--heading-color);
+            margin-top: 1.8em;
+            margin-bottom: 0.6em;
+            line-height: 1.4;
+        }
+        h1 { font-size: 1.8em; border-bottom: 2px solid var(--heading-color); padding-bottom: 0.3em; }
+        h2 { font-size: 1.4em; border-bottom: 1px solid var(--border-color); padding-bottom: 0.2em; }
+        h3 { font-size: 1.2em; }
+        p { margin-bottom: 1.2em; text-indent: 1em; }
+        ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+        li { margin-bottom: 0.4em; }
+        a { color: var(--link-color); text-decoration: underline; }
+        a:focus, a:hover { background-color: #e8f0fe; outline: 3px solid var(--link-color); outline-offset: 2px; }
+        nav[aria-label="目次"], nav[aria-label="Table of Contents"] {
+            background: var(--accent-bg);
+            border-left: 4px solid var(--heading-color);
+            padding: 16px 20px;
+            margin: 24px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        ruby { font-size: 1.0em; }
+        rt { font-size: 0.65em; color: #555; }
+
+        /* 見出しレベル7: コラム・囲み記事・トピックス */
+        .kindlead-column, aside[aria-label="コラム"] {
+            background: #f8fbfe;
+            border: 1px solid #d0e2f2;
+            border-left: 5px solid var(--column-border);
+            padding: 16px 20px;
+            margin: 24px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        [role="heading"][aria-level="7"], .column-title {
+            color: #0c5460;
+            font-size: 1.15em;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 0.6em;
+            border-bottom: 1px dashed #bee5eb;
+            padding-bottom: 0.3em;
+        }
+
+        /* 見出しレベル8: 注釈・脚注・割注 */
+        .kindlead-footnote {
+            background: #fafafa;
+            border-left: 4px solid var(--footnote-border);
+            padding: 12px 16px;
+            margin: 14px 0;
+            font-size: 0.95em;
+            border-radius: 0 6px 6px 0;
+        }
+        .kindlead-footnote p {
+            text-indent: 0;
+            margin-bottom: 0.4em;
+        }
+        [role="heading"][aria-level="8"], .footnote-heading {
+            color: #495057;
+            font-size: 1.0em;
+            font-weight: bold;
+            display: inline-block;
+            margin-right: 0.6em;
+            margin-bottom: 0.2em;
+        }
+        .kindlead-footnote-ref {
+            font-size: 0.8em;
+            vertical-align: super;
+            margin: 0 2px;
+            line-height: 1;
+        }
+        .footnote-ref {
+            font-weight: bold;
+            text-decoration: none;
+            padding: 0 2px;
+        }
+        .footnote-backref {
+            margin-left: 8px;
+            text-decoration: none;
+            color: var(--link-color);
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .footnote-backref:focus, .footnote-backref:hover {
+            background-color: #d1ecf1;
+            outline: 2px solid var(--link-color);
+        }
+
+        /* 見出しレベル9: 図表キャプション・グラフ解説 */
+        .kindlead-figure, figure {
+            margin: 24px 0;
+            padding: 18px 20px;
+            background: #fdfaf6;
+            border: 1px solid #f4e8dc;
+            border-left: 5px solid var(--figure-color);
+            border-radius: 0 8px 8px 0;
+        }
+        [role="heading"][aria-level="9"], .figure-caption, figcaption {
+            color: var(--figure-color);
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 0.6em;
+        }
+
+        footer { margin-top: 50px; padding-top: 20px; border-top: 2px solid #ccc; }
+        .perf-summary {
+            background: var(--accent-bg);
+            border-left: 4px solid var(--heading-color);
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>素晴らしいアクセシビリティの世界</h1>
+    </header>
+    <main>
+        
+<p>著者: 辻 勝利</p>
+<h2>第1章 NVDAと読書革新</h2>
+<p>スクリーンリーダーでの読書体験は年々進化しています<sup class="kindlead-footnote-ref"><a aria-label="注釈1" class="footnote-ref" href="#fn-1" id="fnref-1">※1</a></sup>。<br/>
+特に見出しジャンプ機能は極めて重要です<sup class="kindlead-footnote-ref"><a aria-label="注釈2" class="footnote-ref" href="#fn-2" id="fnref-2">[2]</a></sup>。</p>
+<aside aria-label="コラム" class="kindlead-column" role="region">
+<div aria-level="7" class="column-title" role="heading">コラム：見出しジャンプの歴史</div>
+  NVDAでは古くからHキーによる見出しジャンプがサポートされていましたが、近年は1〜9の数字キーによるレベル別単打ジャンプが利用可能になりました。
+</aside>
+<p>本文の続きです。ここにも図表の解説が入ります。</p>
+<figure class="kindlead-figure">
+<figcaption aria-level="9" class="figure-caption" role="heading">図1-1 読書効率の向上グラフ</figcaption>
+  従来の全文読み上げと比較して、見出しナビゲーションを用いた場合の読書速度が3倍に向上したことを示すグラフ。
+</figure>
+<div class="kindlead-footnote" id="fn-1"><div aria-level="8" class="footnote-heading" role="heading">※1 </div><p>NVDA日本語版の普及により、日本国内の視覚障害者の情報アクセス環境は劇的に改善された。 <a aria-label="本文（注釈1）" class="footnote-backref" href="#fnref-1">↩</a></p></div><div class="kindlead-footnote" id="fn-2"><div aria-level="8" class="footnote-heading" role="heading">[2]</div><p>スクリーンリーダーの単打ナビゲーションキー（Quick Navigation）のこと。 <a aria-label="本文（注釈2）" class="footnote-backref" href="#fnref-2">↩</a></p></div>
+    </main>
+    <footer>
+        <section class="perf-summary" aria-label="処理パフォーマンス計測結果">
+            <h2>⏱ 処理時間ベンチマーク レポート（システム情報）</h2>
+            <p>全 1 ページ完走 / キャプチャ: 0.4秒 / AI解析: 1.1秒 / 総所要時間: 1.5秒</p>
+        </section>
+    </footer>
+</body>
+</html>

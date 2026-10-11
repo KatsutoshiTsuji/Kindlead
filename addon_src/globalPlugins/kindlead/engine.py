@@ -478,7 +478,7 @@ def compile_accessible_html(results, image_count, t_cap, t_api, output_dir=None)
                     
                     back_link = soup.new_tag('a', href=f"#{ref_id}", **{
                         'class': 'footnote-backref',
-                        'aria-label': f'本文（注釈{fn_num}参照位置）に戻る'
+                        'aria-label': f'本文（注釈{fn_num}）'
                     })
                     back_link.string = "↩"
                     fn_p.append(back_link)
@@ -517,7 +517,7 @@ def compile_accessible_html(results, image_count, t_cap, t_api, output_dir=None)
                     parts = node_str.split(cand, 1)
                     if len(parts) == 2:
                         new_frag = BeautifulSoup(
-                            f'{parts[0]}<sup class="kindlead-footnote-ref"><a href="#{fn_id}" id="{ref_id}" class="footnote-ref" aria-label="注釈{fn_num}へジャンプ">{cand}</a></sup>{parts[1]}',
+                            f'{parts[0]}<sup class="kindlead-footnote-ref"><a href="#{fn_id}" id="{ref_id}" class="footnote-ref" aria-label="注釈{fn_num}">{cand}</a></sup>{parts[1]}',
                             'html.parser'
                         )
                         text_node.replace_with(new_frag)
@@ -539,7 +539,7 @@ def compile_accessible_html(results, image_count, t_cap, t_api, output_dir=None)
             if not fn.find(class_='footnote-backref'):
                 back_link = soup.new_tag('a', href=f"#{ref_id}", **{
                     'class': 'footnote-backref',
-                    'aria-label': f'本文（注釈{num}参照位置）に戻る'
+                    'aria-label': f'本文（注釈{num}）'
                 })
                 back_link.string = "↩"
                 last_p = fn.find_all('p')
