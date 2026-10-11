@@ -67,6 +67,20 @@ SYSTEM_PROMPT = """あなたはアクセシビリティを専門とするアシ�
 13. 前置きや解説文（「テキスト情報が含まれていないため」等のメタ説明）は一切含めず、純粋な抽出結果のみを出力してください。
 """
 
+def get_addon_version():
+    """manifest.iniからバージョン番号を動的に取得する"""
+    try:
+        cur = Path(__file__).resolve().parent
+        for p in [cur / "manifest.ini", cur.parent.parent / "manifest.ini", cur.parent.parent.parent / "manifest.ini", cur.parent / "manifest.ini"]:
+            if p.exists():
+                content = p.read_text(encoding="utf-8")
+                m = re.search(r"^version\s*=\s*(.+)$", content, re.MULTILINE)
+                if m:
+                    return m.group(1).strip().strip('"').strip("'")
+    except Exception:
+        pass
+    return "1.2.0"
+
 def clean_key(s):
     if not s:
         return ""
@@ -249,6 +263,7 @@ def process_images_parallel(image_paths, api_key, max_workers=5):
     return results, t_total
 
 def compile_accessible_html(results, image_count, t_cap, t_api, output_dir=None):
+    addon_version = get_addon_version()
     combined_md = [markdown.markdown(r['markdown'], extensions=['extra', 'nl2br']) for r in results]
     raw_body = "\n\n".join(combined_md)
     soup = BeautifulSoup(raw_body, "html.parser")
@@ -699,8 +714,8 @@ def compile_accessible_html(results, image_count, t_cap, t_api, output_dir=None)
         {str(soup)}
     </main>
     <footer>
-        <section class="perf-summary" aria-label="処理パフォーマンス計測結果">
-            <h2>⏱ 処理時間ベンチマーク レポート（システム情報）</h2>
+        <section class="perf-summary" aria-label="システム情報">
+            <h2>Created by Kindlead {addon_version}</h2>
             <p>全 {image_count} ページ完走 / キャプチャ: {t_cap:.1f}秒 / AI解析: {t_api:.1f}秒 / 総所要時間: {(t_cap + t_api):.1f}秒</p>
         </section>
     </footer>
