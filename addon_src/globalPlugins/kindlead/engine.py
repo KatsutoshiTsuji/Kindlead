@@ -723,11 +723,11 @@ def compile_accessible_html(results, image_count, t_cap, t_api, output_dir=None)
 </html>"""
 
     if output_dir is None:
-        target = Path("D:/Katsutoshi/AntiGravity/Kindlead")
-        if target.exists():
-            output_dir = target
+        user_profile = os.environ.get("USERPROFILE", "")
+        desktop = Path(user_profile) / "Desktop"
+        if desktop.exists():
+            output_dir = desktop
         else:
-            user_profile = os.environ.get("USERPROFILE", "")
             output_dir = Path(user_profile)
     else:
         output_dir = Path(output_dir)

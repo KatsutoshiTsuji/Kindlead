@@ -40,11 +40,11 @@ import appModuleHandler
 from logHandler import log
 
 def get_default_output_dir():
-    """デフォルトの出力先フォルダを取得"""
-    target = Path("D:/Katsutoshi/AntiGravity/Kindlead")
-    if target.exists():
-        return str(target)
+    """デフォルトの出力先フォルダ（デスクトップ）を取得"""
     user_profile = os.environ.get("USERPROFILE", "")
+    desktop = Path(user_profile) / "Desktop"
+    if desktop.exists():
+        return str(desktop)
     return user_profile
 
 # 設定の初期化
