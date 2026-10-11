@@ -27,6 +27,11 @@ By combining automated full-screen page navigation with Google's multimodal AI (
    - Configure and securely store your Gemini API key directly within NVDA's Preferences &rarr; Settings dialog.
 7. **Bilingual Support (English & Japanese)**
    - The UI, dialogs, messages, and documentation automatically adapt to your NVDA language (English or Japanese).
+8. **Advanced Heading Navigation (Levels 7–9)**
+   - Leverages NVDA's single-key heading navigation (`7`, `8`, `9`):
+     - **Key `7`**: Jump across columns, sidebars, and callouts (`aria-level="7"`).
+     - **Key `8`**: Cycle directly through annotations and footnotes (`aria-level="8"`) with bidirectional jump links back to the text (`↩`).
+     - **Key `9`**: Browse figures, charts, and captions (`aria-level="9"`).
 
 ### 🚀 Installation
 
@@ -87,6 +92,11 @@ GNU General Public License v2 (GPL-2.0)
    - NVDA の標準設定ダイアログ内に「Kindlead」設定パネルを統合。Gemini API キーを安全に保存・管理できます。
 7. **英語・日本語の多言語対応**
    - NVDAの言語設定に応じて、UI・ダイアログ・ヘルプドキュメントが英語／日本語に自動で切り替わります。
+8. **NVDA見出しレベル7〜9を活用した高度なセマンティック構造化**
+   - NVDAの単打ジャンプ（キー `7`, `8`, `9`）に完全対応：
+     - **`7` キー**：コラム・囲み記事・トピックス（`aria-level="7"`）を連続巡回
+     - **`8` キー**：注釈・脚注・割注（`aria-level="8"`）を連続巡回。本文と注釈の双方向アンカーリンク（「↩ 本文に戻る」）を自動結線
+     - **`9` キー**：図表キャプション・グラフ解説（`aria-level="9"`）を拾い読み
 
 ### 🚀 インストール方法
 
